@@ -31,10 +31,10 @@ module.exports = new FacebookStrategy({
     const span = tracer.startSpan('passport.strategy.facebook')
     if (oldUser) {
         if (config.DEBUG) {
-            console.log('User exists, is connecting Facebook account')
+            console.log("User exists, is connecting Facebook account");
         }
         try {
-            const fbaccount = await models.UserFacebook.findOne({where: {id: profileJson.id}})
+            const fbaccount = await models.UserFacebook.findOne({where: {id: profileJson.id}});
             if (fbaccount) {
                 throw new Error('Your Facebook account is already linked with codingblocks account Id: ' + fbaccount.dataValues.userId)
             } else {

@@ -23,7 +23,7 @@ module.exports = new LocalStrategy(async function (username, password, cb) {
             return cb(null, false, {message: 'Invalid Username'})
         }
         try {
-            const match = await passutils.compare2hash(password, userLocal.password)
+            const match = await passutils.compare2hash(password, userLocal.password);
             if (match) {
                 return cb(null, userLocal.user.get())
             } else {

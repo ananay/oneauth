@@ -25,10 +25,10 @@ module.exports = new GithubStrategy({
     Raven.setContext({extra: {file: 'githubstrategy'}})
     if (oldUser) {
         if (config.DEBUG) {
-            console.log('User exists, is connecting Github account')
+            console.log("User exists, is connecting Github account");
         }
         try {
-            const ghaccount = await models.UserGithub.findOne({where: {id: profileJson.id}})
+            const ghaccount = await models.UserGithub.findOne({where: {id: profileJson.id}});
             if (ghaccount) {
                 throw new Error('Your Github account is already linked with codingblocks account Id: ' + ghaccount.dataValues.userId)
             } else {
@@ -51,7 +51,7 @@ module.exports = new GithubStrategy({
         }
     } else {
         try {
-            const existCount = await models.User.count({where: {username: profileJson.login}})
+            const existCount = await models.User.count({where: {username: profileJson.login}});
             const {userGitHub, created} = await models.UserGithub.findCreateFind({
                 include: [models.User],
                 where: {id: profileJson.id},

@@ -21,10 +21,10 @@ module.exports = new GoogleStrategy({
         Raven.setContext({extra: {file: 'googlestrategy'}})
         if (oldUser) {
             if (config.DEBUG) {
-                debug('User exists, is connecting Google account')
+                debug("User exists, is connecting Google account");
             }
             try {
-                const glaccount = await models.UserGoogle.findOne({where: {id: profileJson.id}})
+                const glaccount = await models.UserGoogle.findOne({where: {id: profileJson.id}});
                 if (glaccount) {
                     throw new Error('Your Google account is already linked with codingblocks account Id: ' + glaccount.dataValues.userId)
                 } else {
@@ -47,7 +47,7 @@ module.exports = new GoogleStrategy({
             }
         } else {
             try {
-                const existCount = await models.User.count({where: {username: profileJson.username}})
+                const existCount = await models.User.count({where: {username: profileJson.username}});
                 const {userGoogle, created} = await models.UserGoogle.findCreateFind({
                     include: [models.User],
                     where: {id: profileJson.id},
