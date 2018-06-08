@@ -52,7 +52,7 @@ module.exports = new GithubStrategy({
     } else {
         try {
             const existCount = await models.User.count({where: {username: profileJson.login}})
-            const {userGitHub, created} = models.UserGithub.findCreateFind({
+            const {userGitHub, created} = await models.UserGithub.findCreateFind({
                 include: [models.User],
                 where: {id: profileJson.id},
                 defaults: {

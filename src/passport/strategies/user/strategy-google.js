@@ -36,7 +36,7 @@ module.exports = new GoogleStrategy({
                             username: profileJson.username,
                             userId: oldUser.id
                         })
-                        const user = models.User.findById(oldUser.id);
+                        const user = await models.User.findById(oldUser.id);
                         return cb(null, user.get())
                     } catch (err) {
                         Raven.captureException(err);

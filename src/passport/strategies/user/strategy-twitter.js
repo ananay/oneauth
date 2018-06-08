@@ -79,10 +79,10 @@ module.exports = new TwitterStrategy({
             if (!userTwitter) {
                 return cb(null, false, {message: 'Authentication Failed'})
             }
+            
             if (userTwitter.user) {
                 return cb(null, userTwitter.user.get())
-            }
-            else {
+            } else {
                 return cb(null, false, {message: 'Authentication Failed'})
             }
 
